@@ -1,5 +1,6 @@
-use regex::Regex;
 use std::collections::HashMap;
+
+use crate::string_util;
 
 
 static HAN_KANA_ALL:&str = "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝｧｨｩｪｫｯｬｭｮｰ";
@@ -85,8 +86,11 @@ impl KatakanaDic {
     fn replace_hankaku_dakuon(&self, input:&str) -> String {
         let mut tmp = input.to_string();
         for i in 0..HAN_DAKU_ALL.len() {
-            let regex = Regex::new(HAN_DAKU_ALL[i]).unwrap();
-            tmp = regex.replace_all(&tmp, ZEN_DAKU_ALL[i]).to_string();
+            tmp = string_util::replace_all(&tmp, HAN_DAKU_ALL[i], ZEN_DAKU_ALL[i]);
+
+            //let regex = Regex::new(HAN_DAKU_ALL[i]).unwrap();
+            //tmp = regex.replace_all(&tmp, ZEN_DAKU_ALL[i]).to_string();
+
         }
         return tmp;
     }

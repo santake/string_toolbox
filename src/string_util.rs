@@ -12,6 +12,15 @@ pub fn ends_with(input:&str, ptrn:&str) -> bool {
     input.ends_with(ptrn)
 }
 
+/// Replace all substring that matches the given regex = '`pattern`' with the given replacement = '`replacement`'
+/// from the '`input`' string.
+/// 
+pub fn replace_all(input:&str, pattern:&str, replacement:&str) -> String {
+    let regex = Regex::new(pattern).unwrap();
+    return regex.replace_all(input, replacement).to_string();
+}
+
+
 /// Remove all space characters from input string (&str) including Japanese Zenkaku-space. 
 /// (this also invokes 'String.trim()' at first)
 /// 
@@ -37,9 +46,10 @@ pub fn remove_all_spaces(input:&str) -> String {
 /// ```
 /// 
 pub fn trim_redundant_spaces(input:&str) -> String {
-    let tmp = input.trim();
-    let regex = Regex::new(r"[　 ]+").unwrap();
-    return regex.replace_all(tmp, " ").to_string();
+    //let tmp = input.trim();
+    //let regex = Regex::new(r"[　 ]+").unwrap();
+    //return regex.replace_all(tmp, " ").to_string();
+    return replace_all(input.trim(), r"[　 ]+", " ");
 } 
 
 

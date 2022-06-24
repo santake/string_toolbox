@@ -17,6 +17,20 @@ mod tests_string_util {
     }
 
     #[test]
+    fn test_replace_all() {
+        let input = "XXXabcYYY";
+        let pattern = "abc";
+        let result = string_toolbox::string_util::replace_all(input, pattern, "o");
+        assert_eq!(result, "XXXoYYY");
+
+        let input = " a b c d e ";
+        let pattern = r"[　 ]+";
+        let result = string_toolbox::string_util::replace_all(input, pattern, "");
+        assert_eq!(result, "abcde");
+
+    }
+
+    #[test]
     fn test_remove_all_spaces() {
         let input = "a b c d e ";
         let result = string_toolbox::string_util::remove_all_spaces(input);
