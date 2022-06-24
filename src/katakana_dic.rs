@@ -15,7 +15,8 @@ static ZEN_DAKU_ALL:[&str; 26] = [
     "パ","ピ","プ","ペ","ポ","ヴ"
 ];
 
-
+///
+/// 
 pub struct KatakanaDic {
     zen_han_dic: HashMap<String, String>,
     han_zen_dic: HashMap<String, String>,
