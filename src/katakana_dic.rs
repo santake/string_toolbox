@@ -39,7 +39,7 @@ impl KatakanaDic {
             hash_zen_han.insert(zen_chars[i].to_string(), han_chars[i].to_string());
             hash_han_zen.insert(han_chars[i].to_string(), zen_chars[i].to_string());
         }
-        // 半角の濁音撥音の処理は別に行う
+        // 半角の濁音の処理は別に行う
         for i in 0..HAN_DAKU_ALL.len() {
             hash_zen_han.insert(ZEN_DAKU_ALL[i].to_string(), HAN_DAKU_ALL[i].to_string());
             //半角->全角は濁音は個別処理するのでmap不要

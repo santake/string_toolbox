@@ -59,4 +59,34 @@ mod tests_string_util {
         assert_eq!(result, "00012");
     }
 
+    #[test]
+    fn test_substring() {
+        let input = "abcdefghij";
+        let result = string_toolbox::string_util::substring(input, 2, 5);
+        assert_eq!("cde", result);
+    }
+
+
+    #[test]
+    fn test_capitalize() {
+        let input = "abc";
+        let result = string_toolbox::string_util::capitalize(input);
+        assert_eq!("Abc", result);
+    }
+
+    #[test]
+    fn test_join() {
+        let inputs: Vec<&str> = ["ab", "cd", "ef"].to_vec();
+        let delim = ",";
+        let result = string_toolbox::string_util::join(inputs, delim);
+        assert_eq!("ab,cd,ef", result);
+    }
+
+    #[test]
+    fn test_snake_case() {
+        let inputs: Vec<&str> = ["Ab", "Cd", "EF"].to_vec();
+        let result = string_toolbox::string_util::snake_case(inputs);
+        assert_eq!("ab_cd_ef", result);
+    }
+
 }
