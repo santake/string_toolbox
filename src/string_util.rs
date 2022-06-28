@@ -58,7 +58,7 @@ pub fn trim_redundant_spaces(input:&str) -> String {
 } 
 
 
-/// convert number to multi-digit-string with specifying the digits
+/// format number to multi-digit-string with specifying the digits
 /// 
 /// e.g. 
 /// ```text
@@ -67,7 +67,7 @@ pub fn trim_redundant_spaces(input:&str) -> String {
 /// 134 (5 digits) --> '00134'
 /// ```
 /// 
-pub fn to_zero_filled_string(num: u32, digit: u32) -> String {
+pub fn fmt_zero_filled(num: u32, digit: u32) -> String {
     let str = num.to_string();
 
     let mut result = String::new();
@@ -166,4 +166,26 @@ pub fn snake_case(inputs:Vec<&str>) -> String {
     }
     return result.to_string();
 
+}
+
+/// Reverse the string
+/// e.g.
+/// `abcde --> edcba`
+/// 
+pub fn reverse(input:&str) -> String {
+    let mut chnk:Vec<char> = input.chars().collect();
+    chnk.reverse();
+    let mut result = String::new();
+    for c in chnk {
+        result.push(c);
+    }
+    return result;
+}
+
+
+pub fn truncate(input:&str, max_width: u32) -> String {
+    if (input.len() as u32) <= max_width {
+        return input.to_string();
+    }
+    return substring(input, 0, max_width);
 }

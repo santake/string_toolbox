@@ -50,12 +50,12 @@ mod tests_string_util {
     }
     
     #[test]
-    fn test_to_zero_fill_string() {
+    fn test_fmt_fill_zero() {
         let num = 3;
-        let result = string_toolbox::string_util::to_zero_filled_string(num, 3);
+        let result = string_toolbox::string_util::fmt_zero_filled(num, 3);
         assert_eq!(result, "003");
         let num = 12;
-        let result = string_toolbox::string_util::to_zero_filled_string(num, 5);
+        let result = string_toolbox::string_util::fmt_zero_filled(num, 5);
         assert_eq!(result, "00012");
     }
 
@@ -88,5 +88,27 @@ mod tests_string_util {
         let result = string_toolbox::string_util::snake_case(inputs);
         assert_eq!("ab_cd_ef", result);
     }
+
+    #[test]
+    fn test_reverse() {
+        let input = "abcde";
+        let result = string_toolbox::string_util::reverse(input);
+        assert_eq!("edcba", result);
+    }
+
+    #[test]
+    fn test_truncate() {
+        // max_widthが入力よりも長い場合はinputが戻る
+        let input = "ab";
+        let max_width = 4;
+        let result = string_toolbox::string_util::truncate(input, max_width);
+        assert_eq!(input, result);
+
+        let input = "abcdEfgHI";
+        let max_width = 5;
+        let result = string_toolbox::string_util::truncate(input, max_width);
+        assert_eq!("abcdE", result);
+    }
+
 
 }
