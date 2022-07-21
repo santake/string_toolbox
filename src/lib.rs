@@ -2,40 +2,35 @@
 /*!
 String utilities (toolbox) that are not provided by `std::string`.
 It also has Japanese 'Katakana' character utilities.
-
-e.g.
-```rust
-// Removing all redundant spaces:
-let input = "a b c d e ";
-let result = string_toolbox::string_util::remove_all_spaces(input);
-assert_eq!(result, "abcde");
-```
-
-e.g.
-```rust
-// convert Hankaku-Katakana w/ Zenkaku-Katakana:
-let input = "ｱｷﾊﾊﾞﾗ";
-let result = string_toolbox::katakana_util::hankaku_to_zenkaku(input);
-assert_eq!("アキハバラ", result);
-```
-
 */
 // ------------------------------------------------------------------------------------------
 
+
 ///
-/// Utiltiy methods for general String
+/// A trait for standard 'String' to be able to use additional utility methods.
+/// You have to import string_toolbox:string_ext::StringExt trait in your scope,
+/// and you will be able to use additional methods like:
+/// 
 /// e.g.
-/// ```rust
-/// let input = "a b c d e ";
-/// let result = string_toolbox::string_util::remove_all_spaces(input);
 /// ```
-pub mod string_util;
+/// use string_toolbox::string_ext::StringExt;    
+///
+/// let num = 3;
+/// let result = String::fmt_zero_filled(num, 3);
+/// assert_eq!(result, "003");
+/// 
+/// let input = "a b  c d e".to_string();
+/// let result = input.remove_all_spaces();
+/// ```
+/// 
+pub mod string_ext;
+
 
 ///
 /// Utility methods for Japanese 'Katakana' String
 /// e.g.
 /// ```rust
-///  let input = "ｱｷﾊﾊﾞﾗ";
+/// let input = "ｱｷﾊﾊﾞﾗ";
 /// let result = string_toolbox::katakana_util::hankaku_to_zenkaku(input);
 /// println!("result: {}", result);
 /// assert_ne!(input, result);
@@ -46,3 +41,7 @@ pub mod katakana_util;
 
 /// (internal) Katakana Dictionary
 mod katakana_dic;
+
+
+
+

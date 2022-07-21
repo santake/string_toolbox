@@ -1,0 +1,34 @@
+#[cfg(test)]
+mod tests_string_util {
+
+    use string_toolbox::string_util;
+
+    #[test]
+    fn test_fmt_fill_zero() {
+        let num = 3;
+        let result = string_util::fmt_zero_filled(num, 3);
+        assert_eq!(result, "003");
+        let num = 12;
+        let result = string_util::fmt_zero_filled(num, 5);
+        assert_eq!(result, "00012");
+    }
+
+    #[test]
+    fn test_join() {
+        //let inputs: Vec<&str> = ["ab", "cd", "ef"].to_vec();
+        let inputs: &[&str] = &["ab", "cd", "ef", "gh", "ij"];
+        let delim = ",";
+        let result = string_util::join(inputs, delim);
+        assert_eq!("ab,cd,ef,gh,ij", result);
+    }
+
+    #[test]
+    fn test_snake_case() {
+        //let inputs: Vec<&str> = ["Ab", "Cd", "EF"].to_vec();
+        let inputs: &[&str] = &["Ab", "Cd", "EF"];
+        let result = string_util::snake_case(inputs);
+        assert_eq!("ab_cd_ef", result);
+    }
+
+
+}

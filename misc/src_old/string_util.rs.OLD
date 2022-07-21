@@ -1,0 +1,57 @@
+
+/// format number to multi-digit-string with specifying the digits
+/// 
+/// e.g. 
+/// ```text
+/// 3 (2 digits) --> '03'
+/// 11 (4 digits) --> '0011'
+/// 134 (5 digits) --> '00134'
+/// ```
+/// 
+pub fn fmt_zero_filled(num: u32, digit: u32) -> String {
+    let str = num.to_string();
+
+    let mut result = String::new();
+    if (str.len() as u32) < digit {
+        let dif = digit - (str.len() as u32);
+        for _ in 0..dif {
+            result.push_str(&"0");
+        }
+    }
+    result.push_str(&str);
+    return result;
+}
+
+
+/// Join the chunks of strings to one string with delimiter character
+/// 
+
+pub fn join(inputs:&[&str], delimiter: &str) -> String {
+    let size = inputs.len();
+    let mut result = String::new();
+    for (i, str) in inputs.iter().enumerate() {
+        result.push_str(str);
+        if 0 <= i as i32 && i < (size - 1) {
+            result.push_str(delimiter);
+        }
+    }
+    return result.to_string();
+}
+
+
+/// Join the chunk of strings as 'snake-case' that Rust likes.
+/// 
+//pub fn snake_case(inputs:Vec<&str>) -> String {
+pub fn snake_case(inputs:&[&str]) -> String {
+    let delimiter = "_";
+    let size = inputs.len();
+    let mut result = String::new();
+    for (i, str) in inputs.iter().enumerate() {
+        result.push_str(&str.to_owned().to_lowercase());
+        if 0 <= i as i32 && i < (size - 1) {
+            result.push_str(delimiter);
+        }
+    }
+    return result.to_string();
+
+}

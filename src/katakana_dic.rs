@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
-use crate::string_util;
+use super::string_ext::StringExt;
+
 
 
 static HAN_KANA_ALL:&str = "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝｧｨｩｪｫｯｬｭｮｰ";
@@ -23,10 +24,13 @@ pub struct KatakanaDic {
     han_zen_dic: HashMap<String, String>,
 }
 
+
+
 ///
 /// Dictionary class; and additional methods for Katakana 
 /// 
 impl KatakanaDic {
+    
 
     /// Default constructor
     pub fn new() -> Self {
@@ -86,7 +90,7 @@ impl KatakanaDic {
     fn replace_hankaku_dakuon(&self, input:&str) -> String {
         let mut tmp = input.to_string();
         for i in 0..HAN_DAKU_ALL.len() {
-            tmp = string_util::replace_all(&tmp, HAN_DAKU_ALL[i], ZEN_DAKU_ALL[i]);
+            tmp = tmp.replace_all(HAN_DAKU_ALL[i], ZEN_DAKU_ALL[i]);
 
             //let regex = Regex::new(HAN_DAKU_ALL[i]).unwrap();
             //tmp = regex.replace_all(&tmp, ZEN_DAKU_ALL[i]).to_string();
