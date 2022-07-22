@@ -1,6 +1,11 @@
 use regex::Regex;
 
 pub trait StringExt {
+
+    /// Repeat a String 'repeat' times to form a new String, with a stirng separator injected each time.
+    /// 
+    fn repeat(text:&str, repeat:u32, separator:&str) -> String;
+
     
     /// (static method)
     ///  format number to multi-digit-string with specifying the digits
@@ -62,6 +67,10 @@ pub trait StringExt {
     /// 
     fn concat(&self, second:&str) -> Self;
 
+    /// Swap the case of a string changing upper <-> lower
+    /// 
+    fn swap_case(&self) -> Self;
+
 }
 
 
@@ -69,6 +78,22 @@ pub trait StringExt {
 impl StringExt for String {
     
     // -- (static methods) -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --     
+
+    fn repeat(text:&str, repeat:u32, separator:&str) -> String {
+        let use_sep = !separator.is_empty();
+        let mut result = String::new();
+        for i in 0..repeat {
+            result.push_str(text);
+            if use_sep && i < (repeat - 1) {
+                result.push_str(separator);
+            }
+        }
+        return result;
+    }
+
+
+
+
     fn fmt_zero_filled(num: u32, digit: u32) -> String {
         let str = num.to_string();
         let mut result = String::new();
@@ -192,5 +217,22 @@ impl StringExt for String {
         result.push_str(second);
         return result;
     }
+
+
+    fn swap_case(&self) -> Self {
+        let chnk:Vec<char> = self.chars().collect();
+        let mut result = String::new();
+        for ch in chnk {
+            let chs = String::from(ch);
+            if ch.is_lowercase() {
+                result.push_str(&chs.to_uppercase());
+            } else {
+                result.push_str(&chs.to_lowercase());
+            }
+        }
+        return result;
+    }
     
+
+
 }

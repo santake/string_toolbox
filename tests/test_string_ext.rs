@@ -5,7 +5,7 @@ mod test_string_ext {
 
     use string_toolbox::string_ext::StringExt;    
 
-    
+    // ---- tests for static methods -------------------
     #[test]
     fn test_fmt_fill_zero() {
         let num = 3;
@@ -33,6 +33,24 @@ mod test_string_ext {
         assert_eq!("ab_cd_ef", result);
     }
 
+    #[test]
+    fn test_repeat() {
+        let text = "aaa";
+        let sep = "-";
+        let repeat = 3;
+        let result = String::repeat(text, repeat, sep);
+        assert_eq!("aaa-aaa-aaa", result);
+
+        let result = String::repeat(text, repeat, "");
+        assert_eq!("aaaaaaaaa", result);
+        let result = String::repeat(text, repeat, " ");
+        assert_eq!("aaa aaa aaa", result);
+
+
+    }
+
+
+    // ---- tests for string extension methods -------------------
 
     #[test]
     fn test_remove_all_spaces() {
@@ -96,6 +114,13 @@ mod test_string_ext {
         let max_width = 5;
         let result = input.truncate(max_width);
         assert_eq!("abcdE", result);
+    }
+
+    #[test]
+    fn test_swap_case() {
+        let input = "AbC dEf-GhI".to_string();
+        let result = input.swap_case();
+        assert_eq!("aBc DeF-gHi", result);
     }
 
 
